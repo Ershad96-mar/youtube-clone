@@ -5,6 +5,8 @@ const currentVideo = videos.find(function(video) {
     return video.id === videoId;
 });
 
+const suggestedList = document.getElementById("suggested-list");
+
 const youtubePlayer = document.getElementById("youtube-player");
 const sitePlayer = document.getElementById("site-player");
 const sitePlayerSource = document.getElementById("site-player-source");
@@ -21,6 +23,44 @@ const videoViews = document.getElementById("video-views");
 const videoDate = document.getElementById("video-date");
 const videoDescription = document.getElementById("video-description");
 const channelAvatar = document.getElementById("channel-avatar");
+
+function createSuggestedCard(video) {
+
+    return `
+        <div class="suggested-card" data-id="${video.id}">
+
+            <img src="${video.image}" alt="${video.title}">
+
+            <div>
+
+                <h4>${video.title}</h4>
+
+                <p>${video.channel}</p>
+
+            </div>
+
+        </div>
+    `;
+
+}
+
+function renderSuggestedVideos() {
+
+    suggestedList.innerHTML = "";
+
+    const suggestedVideos = videos.filter(function(video) {
+
+        return video.id !== currentVideo.id;
+
+    });
+
+    suggestedVideos.forEach(function(video) {
+
+        suggestedList.innerHTML += createSuggestedCard(video);
+
+    });
+
+}
 
 function hideAllPlayersAndErrors() {
     youtubePlayer.style.display = "none";
@@ -87,6 +127,22 @@ else {
     videoTitle.textContent = "ویدئو پیدا نشد";
     videoDescription.textContent = "شناسهٔ این ویدئو معتبر نیست.";
 }
+
+renderSuggestedVideos();
+
+const suggestedCards = document.querySelectorAll(".suggested-card");
+
+suggestedCards.forEach(function(card){
+
+    card.addEventListener("click",function(){
+
+        const id = card.dataset.id;
+
+        window.location.href = `video.html?id=${id}`;
+
+    });
+
+});
 
 /* اگر فایل site لود نشد */
 sitePlayer.addEventListener("error", function() {
