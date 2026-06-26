@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="fa">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Video Page</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="video-page-body">
+
+    <header class="video-topbar">
+        <a href="index.html" class="back-home-btn">← بازگشت به صفحه اصلی</a>
+        <h2 class="video-page-logo">YouTube Clone</h2>
+    </header>
+
+    <main class="watch-page">
+
+        <section class="watch-main">
+
+            <div class="watch-thumbnail-box">
+                <div class="main-video-box"> 
+                    <iframe
+                        id="youtube-player"
+                        src=""
+                        title="YouTube video player"
+                        frameborder="0"
+                        referrerpolicy="strict-origin-when-cross-origin"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen>
+                    </iframe>>
+                    <video id="site-player" controls>
+                        <source id="site-player-source" src="" type="video/mp4">
+                             مرورگر شما از پخش ویدئو پشتیبانی نمی‌کند.
+                    </video>
+                    <div id="video-error-box" class="video-error-box">
+                    <p id="video-error-text">این ویدئو در مرورگر پخش نشد.</p>
+
+                    <div class="video-error-actions">
+                        <a id="download-video-btn" href="#" download class="video-action-btn">
+                         دانلود ویدئو
+                        </a>
+
+                        <a id="open-video-btn" href="#" target="_blank" class="video-action-btn secondary-btn">
+                         باز کردن لینک ویدئو
+                        </a>
+                    </div>
+                </div>
+
+                </div>
+                
+            </div>
+
+            <h1 id="video-title" class="watch-title">عنوان ویدئو</h1>
+
+            <div class="watch-meta">
+                <div class="watch-channel">
+                    <div id="channel-avatar" class="watch-avatar">M</div>
+
+                    <div class="watch-channel-text">
+                        <h3 id="channel-name">Channel Name</h3>
+                        <p id="video-subscribers">0 subscribers</p>
+                    </div>
+                    
+
+                    <button class="subscribe-btn" id="subscribe-btn">Subscribe</button>
+
+
+                    <div class="watch-actions">
+                         <button class="watch-action-btn like-btn" id="like-btn">
+                         👍  <span id="like-count">999</span>
+                         </button>
+
+                        <button class="watch-action-btn">👎</button>
+                        <button class="watch-action-btn">&#10148; Share</button>
+                    </div>
+                </div>
+
+                <div class="watch-stats">
+                    <span id="video-views">0 views</span>
+                    <span id="video-date">today</span>
+                </div>
+            </div>
+
+            <div class="watch-description">
+                <p id="video-description">
+                    توضیحات ویدئو اینجا نمایش داده می‌شود.
+                </p>
+            </div>
+
+        </section>
+
+        <aside class="suggested-videos">
+            <h3>ویدئوهای پیشنهادی</h3>
+
+            <div class="suggested-card">
+                <img src="https://picsum.photos/220/120?random=20" alt="suggested">
+                <div>
+                    <h4>آموزش Flexbox</h4>
+                    <p>Code Academy</p>
+                </div>
+            </div>
+
+            <div class="suggested-card">
+                <img src="https://picsum.photos/220/120?random=21" alt="suggested">
+                <div>
+                    <h4>پروژه طراحی یوتیوب</h4>
+                    <p>Frontend Lab</p>
+                </div>
+            </div>
+
+            <div class="suggested-card">
+                <img src="https://picsum.photos/220/120?random=22" alt="suggested">
+                <div>
+                    <h4>آموزش Grid در CSS</h4>
+                    <p>Web Design Pro</p>
+                </div>
+            </div>
+        </aside>
+
+    </main>
+
+    <script src="data.js"></script>
+    <script src="video.js"></script>
+</body>
+</html>

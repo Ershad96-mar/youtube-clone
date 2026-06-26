@@ -1,0 +1,1014 @@
+body{
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: white;
+}
+
+/* =========================
+   Header
+========================= */
+
+.topbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 10px 20px;
+    background-color: white;
+    border-bottom: 1px solid lightgray;
+
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    z-index: 1000;
+}
+
+.right-section,
+.center-section,
+.left-section{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.logo{
+    margin: 0;
+    font-size: 24px;
+    color: red;
+}
+
+.center-section input{
+    width: 400px;
+    height: 40px;
+    padding: 0 15px;
+    border: 1px solid gray;
+    border-radius: 20px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+.search-btn{
+    height: 40px;
+    padding: 0 18px;
+    border: 1px solid gray;
+    border-radius: 20px;
+    background-color: #f8f8f8;
+    cursor: pointer;
+}
+
+.search-btn:hover{
+    background-color: #e9e9e9;
+}
+
+.icon-btnCRTe{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+
+    width: 100px;
+    height: 40px;
+    border: none;
+    border-radius: 20px;
+    background-color: #f2f2f2;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.icon-btnCRTe:hover{
+    background-color: #dddddd;
+}
+
+.icon-btn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background-color: #f2f2f2;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.icon-btn:hover{
+    background-color: #dddddd;
+}
+
+.profile-btn{
+    width: 40px;
+    height: 40px;
+    border: none;
+    border-radius: 50%;
+    background-color: purple;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+/* =========================
+   Page layout
+========================= */
+
+.page-content{
+    display: flex;
+    padding-top: 70px;
+}
+
+/* =========================
+   Sidebar
+========================= */
+
+.sidebar{
+    width: 220px;
+    min-height: calc(100vh - 70px);
+    padding: 15px 10px;
+    box-sizing: border-box;
+    border-right: 1px solid #eeeeee;
+
+    position: fixed;
+    top: 70px;
+    left: 0;
+    background-color: white;
+}
+
+.homeandshorts-part{
+    border-bottom: 1px solid gray;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.sidebar-item{
+    display: flex;
+    align-items: center;
+    gap: 12px;
+
+    padding: 12px 14px;
+    margin-bottom: 8px;
+    border-radius: 10px;
+    cursor: pointer;
+}
+
+.sidebar-item:hover{
+    background-color: #f2f2f2;
+}
+
+.sidebar-item.active{
+    background-color: #e5e5e5;
+    font-weight: bold;
+}
+
+/* =========================
+   Videos area
+========================= */
+
+.videos-area{
+    flex: 1;
+    padding: 20px;
+    margin-left: 220px;
+    box-sizing: border-box;
+}
+
+/* =========================
+   Categories bar
+========================= */
+
+.categories{
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+
+    position: fixed;
+    top: 60px;
+    left: 220px;
+    right: 20px;
+
+    background-color: white;
+    padding: 12px 0;
+    border-bottom: 1px solid #eeeeee;
+    z-index: 900;
+}
+
+.category-btn{
+    border: none;
+    background-color: #f2f2f2;
+    padding: 10px 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.category-btn:hover{
+    background-color: #e0e0e0;
+}
+
+.active-category{
+    background-color: black;
+    color: white;
+}
+
+/* =========================
+   Videos grid
+========================= */
+
+.videos-grid{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    margin-top: 90px;
+}
+
+/* =========================
+   Video card
+========================= */
+
+.video-card{
+    background-color: white;
+    border-radius: 12px;
+    overflow: visible;
+    cursor: pointer;
+    transition: 0.3s;
+    border: 1px solid #e5e5e5;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+}
+
+.video-card:hover{
+    transform: translateY(-4px);
+    box-shadow: 0 8px 18px rgba(0,0,0,0.12);
+}
+
+/* thumbnail */
+
+.thumbnail-box{
+    position: relative;
+    
+}
+
+.thumbnail-box img{
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+    display: block;
+}
+
+.video-time{
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    background-color: rgba(0,0,0,0.85);
+    color: white;
+    padding: 4px 8px;
+    border-radius: 6px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+/* details under thumbnail */
+
+.video-details{
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    padding: 14px 12px;
+    position: relative;
+}
+
+
+
+
+
+
+
+.video-menu{
+    position: absolute;
+    right: 10px;
+    width: 190px;
+    background-color: white;
+    border: 1px solid #e5e5e5;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+    overflow: hidden;
+    display: none;
+    z-index: 50;
+}
+
+.video-menu.show{
+    display: block;
+}
+
+.menu-item{
+    padding: 12px 14px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.menu-item:hover{
+    background-color: #f2f2f2;
+}
+
+
+
+
+.channel-avatar{
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background-color: #7b2cbf;
+    color: white;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-weight: bold;
+    flex-shrink: 0;
+}
+
+.video-text{
+    flex: 1;
+}
+
+.video-text h3{
+    margin: 0 0 8px 0;
+    font-size: 17px;
+    line-height: 1.6;
+}
+
+.video-text p{
+    margin: 4px 0;
+    color: #606060;
+    font-size: 14px;
+}
+
+.more-btn{
+    border: none;
+    background: transparent;
+    font-size: 22px;
+    cursor: pointer;
+    color: #555;
+    padding: 4px 8px;
+    border-radius: 8px;
+    flex-shrink: 0;
+}
+
+.more-btn:hover{
+    background-color: #f2f2f2;
+}
+
+
+
+
+
+
+
+/* =========================
+   Sidebar Toggle بخش ساید بار 
+========================= */
+
+.sidebar-closed .sidebar{
+    display: none;
+}
+
+.sidebar-closed .videos-area{
+    margin-left: 0;
+}
+
+.sidebar-closed .categories{
+    left: 20px;
+}
+
+
+
+
+
+
+/* =========================
+   Responsive - مرحله ۵
+========================= */
+
+/* ---------- تبلت / لپ‌تاپ کوچک ---------- */
+@media (max-width: 1100px){
+
+    .sidebar{
+        width: 180px;
+    }
+
+    .videos-area{
+        margin-left: 180px;
+    }
+
+    .categories{
+        left: 180px;
+    }
+
+    .center-section input{
+        width: 250px;
+    }
+
+    .videos-grid{
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ---------- موبایل / صفحه خیلی کوچک ---------- */
+@media (max-width: 700px){
+
+    .topbar{
+        padding: 10px;
+    }
+
+    .logo{
+        font-size: 18px;
+    }
+
+    .center-section input{
+        width: 140px;
+        height: 36px;
+        font-size: 14px;
+    }
+
+    .search-btn{
+        height: 36px;
+        padding: 0 12px;
+    }
+
+    .icon-btn,
+    .profile-btn{
+        width: 34px;
+        height: 34px;
+        font-size: 14px;
+    }
+
+    .icon-btnCRTe{
+        width: 70px;
+        height: 34px;
+        font-size: 13px;
+    }
+
+    .sidebar{
+        width: 70px;
+        padding: 10px 6px;
+    }
+
+    .sidebar-item{
+        justify-content: center;
+        padding: 10px;
+    }
+
+    .sidebar-item span:last-child{
+        display: none;
+    }
+
+    .videos-area{
+        margin-left: 70px;
+        padding: 15px;
+    }
+
+    .categories{
+        left: 70px;
+        right: 10px;
+        gap: 8px;
+    }
+
+    .category-btn{
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+
+    .videos-grid{
+        grid-template-columns: 1fr;
+        gap: 18px;
+        margin-top: 90px;
+    }
+
+    .thumbnail-box img{
+        height: 200px;
+    }
+
+    .video-text h3{
+        font-size: 16px;
+    }
+
+    .video-text p{
+        font-size: 13px;
+    }
+
+    .channel-avatar{
+        width: 36px;
+        height: 36px;
+        font-size: 14px;
+    }
+
+    .more-btn{
+        font-size: 18px;
+        padding: 2px 6px;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* =========================
+   Video Page - مرحله 14
+========================= */
+
+.video-page-body{
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+}
+
+.video-topbar{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 24px;
+    background-color: white;
+    border-bottom: 1px solid #e5e5e5;
+}
+
+.back-home-btn{
+    text-decoration: none;
+    color: black;
+    font-weight: bold;
+    background-color: #f2f2f2;
+    padding: 10px 16px;
+    border-radius: 10px;
+}
+
+.back-home-btn:hover{
+    background-color: #e2e2e2;
+}
+
+.video-page-logo{
+    margin: 0;
+    color: red;
+}
+
+.watch-page{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 24px;
+    padding: 24px;
+    box-sizing: border-box;
+}
+
+.watch-main{
+    background-color: white;
+    border-radius: 16px;
+    padding: 20px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+.watch-thumbnail-box img{
+    width: 100%;
+    height: 480px;
+    object-fit: cover;
+    border-radius: 16px;
+    display: block;
+}
+
+.main-video-box{
+    width: 100%;
+    border-radius: 16px;
+    overflow: hidden;
+    background-color: black;
+    position: relative;
+}
+
+#youtube-player,
+#site-player{
+    width: 100%;
+    height: 100%;
+    display: none;
+    border: none;
+    background-color: black;
+}
+
+.video-error-box{
+    display: none;
+    background-color: #111111;
+    color: white;
+    padding: 24px;
+    text-align: center;
+}
+
+.video-error-box p{
+    margin: 0 0 16px 0;
+    font-size: 16px;
+    line-height: 1.8;
+}
+
+.video-error-actions{
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.video-action-btn{
+    display: inline-block;
+    text-decoration: none;
+    background-color: #ff0000;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 10px;
+    font-size: 14px;
+}
+
+.video-action-btn:hover{
+    background-color: #cc0000;
+}
+
+.secondary-btn{
+    background-color: #2d2d2d;
+}
+
+.secondary-btn:hover{
+    background-color: #444444;
+}
+
+.watch-title{
+    margin: 18px 0 14px;
+    font-size: 28px;
+    line-height: 1.5;
+}
+
+.watch-meta{
+    display: grid;
+    align-items: flex-start;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+    margin-bottom: 18px;
+}
+
+.watch-channel{
+    display: flex;
+    align-items: center;
+    gap: 14px;
+}
+
+.watch-avatar{
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background-color: #7b2cbf;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+
+.watch-channel-text h3{
+    margin: 0 0 6px 0;
+}
+
+.watch-channel-text p{
+    margin: 0;
+    color: #606060;
+}
+
+.watch-stats{
+    display: flex;
+    gap: 16px;
+    color: #444;
+    font-weight: bold;
+}
+
+.subscribe-btn{
+    border: none;
+    background-color: black;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 20px;
+    font-size: 14px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+.subscribe-btn:hover{
+    opacity: 0.85;
+}
+
+.subscribe-btn.subscribed{
+    background-color: #e5e5e5;
+    color: black;
+}
+
+.watch-actions{
+    gap: 10px;
+    display: flex;
+    background-color: white;
+    border: none;
+    padding: 10px 10px;
+    
+}
+.watch-action-btn{
+    background-color: #f2f2f2;
+    border: none;
+    font-weight: bold;
+    padding: 10px 10px;
+    border-radius: 20px;
+    cursor: pointer;
+    transition: 0.2s
+}
+.watch-action-btn:hover{
+    background-color: #e0e0e0;
+}
+
+.like-btn.liked{
+    background-color: #dbeafe;
+    color: #0b57d0;
+    font-weight: bold;
+}
+
+.watch-description{
+    background-color: #f5f5f5;
+    padding: 16px;
+    border-radius: 14px;
+    line-height: 1.8;
+}
+
+.suggested-videos{
+    background-color: white;
+    border-radius: 16px;
+    padding: 18px;
+    height: fit-content;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+}
+
+.suggested-videos h3{
+    margin-top: 0;
+    margin-bottom: 18px;
+}
+
+.suggested-card{
+    display: flex;
+    gap: 12px;
+    margin-bottom: 16px;
+    align-items: flex-start;
+}
+
+.suggested-card img{
+    width: 180px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 12px;
+}
+
+.suggested-card h4{
+    margin: 0 0 8px 0;
+    font-size: 15px;
+    line-height: 1.5;
+}
+
+.suggested-card p{
+    margin: 0;
+    color: #666;
+    font-size: 14px;
+}
+
+/* ---------- ریسپانسیو صفحه ویدئو ---------- */
+@media (max-width: 1000px){
+    .watch-page{
+        grid-template-columns: 1fr;
+    }
+
+    .watch-thumbnail-box img{
+        height: 360px;
+    }
+}
+
+@media (max-width: 700px){
+    .video-topbar{
+        padding: 14px;
+        gap: 12px;
+        flex-wrap: wrap;
+    }
+
+    .watch-page{
+        padding: 14px;
+    }
+
+    .watch-main,
+    .suggested-videos{
+        padding: 14px;
+    }
+
+    .watch-thumbnail-box img{
+        height: 240px;
+    }
+
+    .watch-title{
+        font-size: 22px;
+    }
+}
+
+
+
+
+
+/* =========================
+   Watch Page Responsive
+========================= */
+
+/* تبلت */
+@media (max-width: 1100px) {
+    .watch-page {
+        grid-template-columns: 1fr;
+        gap: 24px;
+    }
+
+    .suggested-videos {
+        width: 100%;
+    }
+}
+
+
+/* موبایل */
+@media (max-width: 768px) {
+
+    .watch-page {
+        display: block;
+        padding: 90px 12px 20px;
+    }
+
+    .watch-main {
+        width: 100%;
+    }
+
+    .watch-thumbnail-box {
+        width: 100%;
+    }
+
+    .main-video-box {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    .main-video-box iframe,
+    .main-video-box video {
+        width: 100%;
+        height: 100%;
+        display: block;
+    }
+
+    .watch-title {
+        font-size: 20px;
+        line-height: 1.7;
+        margin: 14px 0;
+    }
+
+    /* بخش اطلاعات کانال و دکمه‌ها */
+    .watch-meta {
+        display: flex;
+        flex-direction: column;
+        gap: 14px;
+    }
+
+    .watch-channel {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .watch-avatar {
+        width: 42px;
+        height: 42px;
+        font-size: 16px;
+        flex-shrink: 0;
+    }
+
+    .watch-channel-text h3 {
+        font-size: 16px;
+        margin: 0;
+    }
+
+    .watch-channel-text p {
+        font-size: 13px;
+        margin: 4px 0 0;
+    }
+
+    .subscribe-btn {
+        height: 38px;
+        padding: 0 16px;
+        font-size: 14px;
+        border-radius: 20px;
+    }
+
+    /* دکمه‌های لایک و share زیر هم نریزند */
+    .watch-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        width: 100%;
+        margin-top: 4px;
+    }
+
+    .watch-action-btn {
+        font-size: 13px;
+        padding: 10px 14px;
+        border-radius: 20px;
+    }
+
+    .watch-stats {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+        font-size: 13px;
+    }
+
+    .watch-description {
+        margin-top: 14px;
+        padding: 14px;
+        font-size: 14px;
+        line-height: 1.9;
+        border-radius: 12px;
+    }
+
+    /* بخش ویدیوهای پیشنهادی */
+    .suggested-videos {
+        width: 100%;
+        margin-top: 24px;
+    }
+
+    .suggested-videos h3 {
+        font-size: 18px;
+        margin-bottom: 14px;
+    }
+
+    .suggested-card {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        margin-bottom: 14px;
+    }
+
+    .suggested-card img {
+        width: 140px;
+        height: 80px;
+        object-fit: cover;
+        border-radius: 10px;
+        flex-shrink: 0;
+    }
+
+    .suggested-card h4 {
+        font-size: 14px;
+        margin: 0 0 6px;
+        line-height: 1.6;
+    }
+
+    .suggested-card p {
+        font-size: 12px;
+        margin: 0;
+        color: #606060;
+    }
+
+    /* باکس خطا */
+    .video-error-box {
+        padding: 14px;
+    }
+
+    .video-error-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .video-action-btn {
+        width: 100%;
+        text-align: center;
+        box-sizing: border-box;
+    }
+}
