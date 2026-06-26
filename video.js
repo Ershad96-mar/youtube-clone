@@ -31,11 +31,13 @@ function createSuggestedCard(video) {
 
             <img src="${video.image}" alt="${video.title}">
 
-            <div>
+            <div class="suggested-info">
 
                 <h4>${video.title}</h4>
 
                 <p>${video.channel}</p>
+
+                <p>${video.views} • ${video.date}</p>
 
             </div>
 
@@ -57,6 +59,20 @@ function renderSuggestedVideos() {
     suggestedVideos.forEach(function(video) {
 
         suggestedList.innerHTML += createSuggestedCard(video);
+
+    });
+
+    const suggestedCards = document.querySelectorAll(".suggested-card");
+
+    suggestedCards.forEach(function(card){
+
+      card.addEventListener("click",function(){
+
+        const id = card.dataset.id;
+
+        window.location.href = `video.html?id=${id}`;
+
+      });
 
     });
 
@@ -130,19 +146,7 @@ else {
 
 renderSuggestedVideos();
 
-const suggestedCards = document.querySelectorAll(".suggested-card");
 
-suggestedCards.forEach(function(card){
-
-    card.addEventListener("click",function(){
-
-        const id = card.dataset.id;
-
-        window.location.href = `video.html?id=${id}`;
-
-    });
-
-});
 
 /* اگر فایل site لود نشد */
 sitePlayer.addEventListener("error", function() {
