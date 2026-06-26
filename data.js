@@ -100,7 +100,7 @@ const videos = [
         type: "youtube",
         src: "https://noodlemagazine.com/watch/-131482780_456239095"
     },
-    {
+   {
     id: "got-s01e01-720p",
     title: "Game of Thrones - Season 1 Episode 1",
     channel: "DonyayeSerial",
@@ -128,7 +128,7 @@ const videos = [
     duration: "55:00",
     category: "Game.of.Thrones.S01.720px",
     type: "site",
-    src: "https://dls4.film2cinemaha.top/DonyayeSerial/series2/tt0944947/SoftSub/S01/720p.BluRay/Game.of.Thrones.S01E02.720p.BluRay.SoftSub.Unknown.DonyayeSerial.mkv"
+    src: "https://dls4.aparatchi-dlcenter.top/DonyayeSerial/series2/tt0944947/SoftSub/S01/720p.BluRay/Game.of.Thrones.S01E02.720p.BluRay.SoftSub.Unknown.DonyayeSerial.mkv"
 },
 {
     id: "got-s01e03-720p",
@@ -143,7 +143,7 @@ const videos = [
     duration: "55:00",
     category: "Game.of.Thrones.S01.720px",
     type: "site",
-    src: "https://dls4.film2cinemaha.top/DonyayeSerial/series2/tt0944947/SoftSub/S01/720p.BluRay/Game.of.Thrones.S01E03.720p.BluRay.SoftSub.Unknown.DonyayeSerial.mkv"
+    src: "https://dls4.aparatchi-dlcenter.top/DonyayeSerial/series2/tt0944947/SoftSub/S01/720p.BluRay/Game.of.Thrones.S01E03.720p.BluRay.SoftSub.Unknown.DonyayeSerial.mkv"
 },
 {
     id: "got-s01e04-720p",
@@ -158,7 +158,7 @@ const videos = [
     duration: "55:00",
     category: "Game.of.Thrones.S01.720px",
     type: "site",
-    src: "https://dls4.film2cinemaha.top/DonyayeSerial/series2/tt0944947/SoftSub/S01/720p.BluRay/Game.of.Thrones.S01E04.720p.BluRay.SoftSub.Unknown.DonyayeSerial.mkv"
+    src: "https://dls4.aparatchi-dlcenter.top/DonyayeSerial/series2/tt0944947/SoftSub/S01/720p.BluRay/Game.of.Thrones.S01E04.720p.BluRay.SoftSub.Unknown.DonyayeSerial.mkv"
 },
 {
     id: "got-s01e05-720p",
@@ -173,7 +173,7 @@ const videos = [
     duration: "55:00",
     category: "Game.of.Thrones.S01.720px",
     type: "site",
-    src: "https://dls4.film2cinemaha.top/DonyayeSerial/series2/tt0944947/SoftSub/S01/720p.BluRay/Game.of.Thrones.S01E05.720p.BluRay.SoftSub.Unknown.DonyayeSerial.mkv"
+    src: "https://dls4.aparatchi-dlcenter.top/DonyayeSerial/series2/tt0944947/SoftSub/S01/720p.BluRay/Game.of.Thrones.S01E05.720p.BluRay.SoftSub.Unknown.DonyayeSerial.mkv"
 },
 {
     id: "got-s01e06-720p",
@@ -188,7 +188,7 @@ const videos = [
     duration: "55:00",
     category: "Game.of.Thrones.S01.720px",
     type: "site",
-    src: "https://dls4.film2cinemaha.top/DonyayeSerial/series2/tt0944947/SoftSub/S01/720p.BluRay/Game.of.Thrones.S01E06.720p.BluRay.SoftSub.Unknown.DonyayeSerial.mkv"
+    src: "https://dls4.aparatchi-dlcenter.top/DonyayeSerial/series2/tt0944947/SoftSub/S01/720p.BluRay/Game.of.Thrones.S01E06.720p.BluRay.SoftSub.Unknown.DonyayeSerial.mkv"
 },
 {
     id: "got-s01e07-720p",
@@ -203,7 +203,7 @@ const videos = [
     duration: "55:00",
     category: "Game.of.Thrones.S01.720px",
     type: "site",
-    src: "https://dls4.film2cinemaha.top/DonyayeSerial/series2/tt0944947/SoftSub/S01/720p.BluRay/Game.of.Thrones.S01E07.720p.BluRay.SoftSub.Unknown.DonyayeSerial.mkv"
+    src: "https://dls4.aparatchi-dlcenter.top/DonyayeSerial/series2/tt0944947/SoftSub/S01/720p.BluRay/Game.of.Thrones.S01E07.720p.BluRay.SoftSub.Unknown.DonyayeSerial.mkv"
 },
 {
     id: "got-s01e08-720p",
@@ -218,7 +218,7 @@ const videos = [
     duration: "55:00",
     category: "Game.of.Thrones.S01.720px",
     type: "site",
-    src: "https://dls4.film2cinemaha.top/DonyayeSerial/series2/tt0944947/SoftSub/S01/720p.BluRay/Game.of.Thrones.S01E08.720p.BluRay.SoftSub.Unknown.DonyayeSerial.mkv"
+    src: "https://dls4.aparatchi-dlcenter.top/DonyayeSerial/series2/tt0944947/SoftSub/S01/720p.BluRay/Game.of.Thrones.S01E08.720p.BluRay.SoftSub.Unknown.DonyayeSerial.mkv"
 },
 {
     id: "got-s01e09-720p",
@@ -233,7 +233,7 @@ const videos = [
     duration: "55:00",
     category: "Game.of.Thrones.S01.720px",
     type: "site",
-    src: "https://dls4.film2cinemaha.top/DonyayeSerial/series2/tt0944947/SoftSub/S01/720p.BluRay/Game.of.Thrones.S01E09.720p.BluRay.SoftSub.Unknown.DonyayeSerial.mkv"
+    src: "https://dls4.aparatchi-dlcenter.top/DonyayeSerial/series2/tt0944947/SoftSub/S01/720p.BluRay/Game.of.Thrones.S01E09.720p.BluRay.SoftSub.Unknown.DonyayeSerial.mkv"
 },
 {
     id: "got-s01e10-720p",
@@ -248,8 +248,7 @@ const videos = [
     duration: "55:00",
     category: "Game.of.Thrones.S01.720px",
     type: "site",
-    src: "https://dls4.film2cinemaha.top/DonyayeSerial/series2/tt0944947/SoftSub/S01/720p.BluRay/Game.of.Thrones.S01E10.720p.BluRay.SoftSub.Unknown.DonyayeSerial.mkv"
+    src: "https://dls4.aparatchi-dlcenter.top/DonyayeSerial/series2/tt0944947/SoftSub/S01/720p.BluRay/Game.of.Thrones.S01E10.720p.BluRay.SoftSub.Unknown.DonyayeSerial.mkv"
 }
-    
 
 ]
