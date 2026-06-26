@@ -25,7 +25,7 @@ const channelAvatar = document.getElementById("channel-avatar");
 function hideAllPlayersAndErrors() {
     youtubePlayer.style.display = "none";
     sitePlayer.style.display = "none";
-    videoErrorBox.style.display = "none";
+    
 }
 
 function setupDownloadAndOpenButtons(videoUrl) {
