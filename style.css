@@ -770,30 +770,34 @@ body{
     margin-bottom: 18px;
 }
 
+#suggested-list{
+    display:flex;
+    flex-direction:column;
+    gap:14px;
+}
+
 .suggested-card{
-    display: flex;
-    gap: 12px;
-    margin-bottom: 16px;
-    align-items: flex-start;
+    display:flex;
+    gap:12px;
+    cursor:pointer;
 }
 
 .suggested-card img{
-    width: 180px;
-    height: 100px;
-    object-fit: cover;
-    border-radius: 12px;
+    width:170px;
+    height:95px;
+    object-fit:cover;
+    border-radius:10px;
 }
 
-.suggested-card h4{
-    margin: 0 0 8px 0;
-    font-size: 15px;
-    line-height: 1.5;
+.suggested-info h4{
+    font-size:15px;
+    margin-bottom:6px;
 }
 
-.suggested-card p{
-    margin: 0;
-    color: #666;
-    font-size: 14px;
+.suggested-info p{
+    font-size:13px;
+    color:#666;
+    margin:3px 0;
 }
 
 /* ---------- ریسپانسیو صفحه ویدئو ---------- */
