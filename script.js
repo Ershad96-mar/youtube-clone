@@ -97,7 +97,7 @@ function renderVideos() {
     });
     attachVideoCardEvents();
     attachMoreMenuEvents();
-    pageNumber.textContent = currentPage;
+    /*pageNumber.textContent = currentPage;*/
 }
 
 
