@@ -5,7 +5,19 @@ const videosGrid = document.getElementById("videos-grid");
 const menuButton = document.querySelector(".menu-btn");
 const pageContent = document.querySelector(".page-content");
 
+const prevPageButton =
+document.getElementById("prev-page");
+
+const nextPageButton =
+document.getElementById("next-page");
+
+const pageNumber =
+document.getElementById("page-number");
+
 let selectedCategory = "همه";
+let currentPage = 1;
+
+const videosPerPage = 8;
 let searchText = "";
 
 /* ---------------------------
@@ -66,15 +78,61 @@ function getFilteredVideos() {
 function renderVideos() {
     const filteredVideos = getFilteredVideos();
 
+    const startIndex = (currentPage - 1) * videosPerPage;
+
+    const endIndex = startIndex + videosPerPage;
+
+    const pageVideos = filteredVideos.slice(startIndex, endIndex);
+
     videosGrid.innerHTML = "";
 
-    filteredVideos.forEach(function(video) {
+    pageVideos.forEach(function(video) {
         videosGrid.innerHTML += createVideoCard(video);
     });
 
     attachVideoCardEvents();
     attachMoreMenuEvents();
+    pageNumber.textContent = currentPage;
 }
+
+/* ---------------------------
+   رویداد کلیک روی صفحه بعدی
+--------------------------- */
+
+nextPageButton.addEventListener("click",function(){
+
+    const filteredVideos =
+    getFilteredVideos();
+
+    const totalPages =
+    Math.ceil(filteredVideos.length/videosPerPage);
+
+    if(currentPage<totalPages){
+
+        currentPage++;
+
+        renderVideos();
+
+    }
+
+});
+
+
+/* ---------------------------
+   رویداد کلیک روی صفحه قبلی
+--------------------------- */
+
+prevPageButton.addEventListener("click",function(){
+
+    if(currentPage>1){
+
+        currentPage--;
+
+        renderVideos();
+
+    }
+
+});
 
 /* ---------------------------
    رویداد کلیک روی کارت ویدئو
