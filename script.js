@@ -5,20 +5,24 @@ const videosGrid = document.getElementById("videos-grid");
 const menuButton = document.querySelector(".menu-btn");
 const pageContent = document.querySelector(".page-content");
 
-const prevPageButton =
+/*const prevPageButton =
 document.getElementById("prev-page");
 
 const nextPageButton =
 document.getElementById("next-page");
 
 const pageNumber =
-document.getElementById("page-number");
+document.getElementById("page-number");*/
 
 let selectedCategory = "همه";
-let currentPage = 1;
 
-const videosPerPage = 8;
+/*let currentPage = 1;
+const videosPerPage = 8;*/
+
 let searchText = "";
+
+let visibleVideos = 8;
+const loadMoreCount = 8;
 
 /* ---------------------------
    ساخت HTML هر کارت ویدئو
@@ -78,28 +82,53 @@ function getFilteredVideos() {
 function renderVideos() {
     const filteredVideos = getFilteredVideos();
 
-    const startIndex = (currentPage - 1) * videosPerPage;
+    /*const startIndex = (currentPage - 1) * videosPerPage;
 
-    const endIndex = startIndex + videosPerPage;
+    const endIndex = startIndex + videosPerPage;*/
 
-    const pageVideos = filteredVideos.slice(startIndex, endIndex);
+    const visibleList =filteredVideos.slice(0, visibleVideos);
 
     videosGrid.innerHTML = "";
 
-    pageVideos.forEach(function(video) {
-        videosGrid.innerHTML += createVideoCard(video);
-    });
+    visibleList.forEach(function(video){
 
+         videosGrid.innerHTML += createVideoCard(video);
+
+    });
     attachVideoCardEvents();
     attachMoreMenuEvents();
     pageNumber.textContent = currentPage;
 }
 
+
+/* ------------------------
+ رویداداسکرول بعد هر 8 ویدیو
+--------------------------- */
+
+
+window.addEventListener("scroll", function() {
+
+    const scrollPosition =
+        window.innerHeight + window.scrollY;
+
+    const pageHeight =
+        document.body.offsetHeight;
+
+    if (scrollPosition >= pageHeight - 200) {
+
+        visibleVideos += loadMoreCount;
+
+        renderVideos();
+
+    }
+
+});
+
 /* ---------------------------
    رویداد کلیک روی صفحه بعدی
 --------------------------- */
 
-nextPageButton.addEventListener("click",function(){
+/*nextPageButton.addEventListener("click",function(){
 
     const filteredVideos =
     getFilteredVideos();
@@ -115,14 +144,14 @@ nextPageButton.addEventListener("click",function(){
 
     }
 
-});
+});*/
 
 
 /* ---------------------------
    رویداد کلیک روی صفحه قبلی
 --------------------------- */
 
-prevPageButton.addEventListener("click",function(){
+/*prevPageButton.addEventListener("click",function(){
 
     if(currentPage>1){
 
@@ -132,7 +161,7 @@ prevPageButton.addEventListener("click",function(){
 
     }
 
-});
+});*/
 
 /* ---------------------------
    رویداد کلیک روی کارت ویدئو
@@ -192,6 +221,8 @@ categoryButtons.forEach(function(button) {
         button.classList.add("active-category");
         selectedCategory = button.textContent.trim();
 
+        visibleVideos = 8;
+
         renderVideos();
     });
 });
@@ -202,6 +233,7 @@ categoryButtons.forEach(function(button) {
 if (searchButton) {
     searchButton.addEventListener("click", function() {
         searchText = searchInput.value.toLowerCase().trim();
+        visibleVideos = 8;
         renderVideos();
     });
 }
@@ -213,6 +245,7 @@ if (searchInput) {
     searchInput.addEventListener("keydown", function(event) {
         if (event.key === "Enter") {
             searchText = searchInput.value.toLowerCase().trim();
+            visibleVideos = 8;
             renderVideos();
         }
     });
@@ -222,6 +255,7 @@ if (searchInput) {
     --------------------------- */
     searchInput.addEventListener("input", function() {
         searchText = searchInput.value.toLowerCase().trim();
+        visibleVideos = 8;
         renderVideos();
     });
 }
