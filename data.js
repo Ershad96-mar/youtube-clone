@@ -262,7 +262,7 @@ const videos = [
     image: "images/monarch.jpg",
     avatar: "M",
     duration: "50:00",
-    category: "Monarch.Legacy.of.Monsters.S02.720p",
+    category: "Monarch",
     type: "site",
     src: "https://dls6.aparatchi-dlcenter.top/DonyayeSerial/series4/tt17220216/SoftSub/S02/720p.Web-DL/Monarch.Legacy.of.Monsters.S02E01.720p.Web-DL.x264.Pahe.SoftSub.DonyayeSerial.mkv"
 },
@@ -277,7 +277,7 @@ const videos = [
     image: "images/monarch.jpg",
     avatar: "M",
     duration: "50:00",
-    category: "Monarch.Legacy.of.Monsters.S02.720p",
+    category: "Monarch",
     type: "site",
     src: "https://dls6.aparatchi-dlcenter.top/DonyayeSerial/series4/tt17220216/SoftSub/S02/720p.Web-DL/Monarch.Legacy.of.Monsters.S02E02.720p.Web-DL.x264.SoftSub.DonyayeSerial.mkv"
 },
@@ -292,7 +292,7 @@ const videos = [
     image: "images/monarch.jpg",
     avatar: "M",
     duration: "50:00",
-    category: "Monarch.Legacy.of.Monsters.S02.720p",
+    category: "Monarch",
     type: "site",
     src: "https://dls6.aparatchi-dlcenter.top/DonyayeSerial/series4/tt17220216/SoftSub/S02/720p.Web-DL/Monarch.Legacy.of.Monsters.S02E03.720p.Web-DL.x264.SoftSub.DonyayeSerial.mkv"
 },
@@ -307,7 +307,7 @@ const videos = [
     image: "images/monarch.jpg",
     avatar: "M",
     duration: "50:00",
-    category: "Monarch.Legacy.of.Monsters.S02.720p",
+    category: "Monarch",
     type: "site",
     src: "https://dls6.aparatchi-dlcenter.top/DonyayeSerial/series4/tt17220216/SoftSub/S02/720p.Web-DL/Monarch.Legacy.of.Monsters.S02E04.720p.Web-DL.x264.SoftSub.DonyayeSerial.mkv"
 },
@@ -322,7 +322,7 @@ const videos = [
     image: "images/monarch.jpg",
     avatar: "M",
     duration: "50:00",
-    category: "Monarch.Legacy.of.Monsters.S02.720p",
+    category: "Monarch",
     type: "site",
     src: "https://dls6.aparatchi-dlcenter.top/DonyayeSerial/series4/tt17220216/SoftSub/S02/720p.Web-DL/Monarch.Legacy.of.Monsters.S02E05.720p.Web-DL.x264.SoftSub.DonyayeSerial.mkv"
 },
@@ -337,7 +337,7 @@ const videos = [
     image: "images/monarch.jpg",
     avatar: "M",
     duration: "50:00",
-    category: "Monarch.Legacy.of.Monsters.S02.720p",
+    category: "Monarch",
     type: "site",
     src: "https://dls6.aparatchi-dlcenter.top/DonyayeSerial/series4/tt17220216/SoftSub/S02/720p.Web-DL/Monarch.Legacy.of.Monsters.S02E06.720p.Web-DL.x264.SoftSub.DonyayeSerial.mkv"
 },
@@ -352,7 +352,7 @@ const videos = [
     image: "images/monarch.jpg",
     avatar: "M",
     duration: "50:00",
-    category: "Monarch.Legacy.of.Monsters.S02.720p",
+    category: "Monarch",
     type: "site",
     src: "https://dls6.aparatchi-dlcenter.top/DonyayeSerial/series4/tt17220216/SoftSub/S02/720p.Web-DL/Monarch.Legacy.of.Monsters.S02E07.720p.Web-DL.x264.SoftSub.DonyayeSerial.mkv"
 },
@@ -367,7 +367,7 @@ const videos = [
     image: "images/monarch.jpg",
     avatar: "M",
     duration: "50:00",
-    category: "Monarch.Legacy.of.Monsters.S02.720p",
+    category: "Monarch",
     type: "site",
     src: "https://dls6.aparatchi-dlcenter.top/DonyayeSerial/series4/tt17220216/SoftSub/S02/720p.Web-DL/Monarch.Legacy.of.Monsters.S02E08.720p.Web-DL.x264.SoftSub.DonyayeSerial.mkv"
 },
@@ -382,7 +382,7 @@ const videos = [
     image: "images/monarch.jpg",
     avatar: "M",
     duration: "50:00",
-    category: "Monarch.Legacy.of.Monsters.S02.720p",
+    category: "Monarch",
     type: "site",
     src: "https://dls6.aparatchi-dlcenter.top/DonyayeSerial/series4/tt17220216/SoftSub/S02/720p.Web-DL/Monarch.Legacy.of.Monsters.S02E09.720p.Web-DL.x264.SoftSub.DonyayeSerial.mkv"
 },
@@ -397,7 +397,7 @@ const videos = [
     image: "images/monarch.jpg",
     avatar: "M",
     duration: "50:00",
-    category: "Monarch.Legacy.of.Monsters.S02.720p",
+    category: "Monarch",
     type: "site",
     src: "https://dls6.aparatchi-dlcenter.top/DonyayeSerial/series4/tt17220216/SoftSub/S02/720p.Web-DL/Monarch.Legacy.of.Monsters.S02E10.720p.Web-DL.x264.SoftSub.DonyayeSerial.mkv"
 }
