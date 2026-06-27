@@ -214,3 +214,37 @@ if (likeButton && likeCountElement) {
         likeCountElement.textContent = formatLikeCount(likeCount);
     });
 }
+
+
+const themeButton = document.getElementById("theme-btn");
+
+if(themeButton){
+
+    if(localStorage.getItem("theme")==="dark"){
+
+        document.body.classList.add("dark-mode");
+        themeButton.textContent="☀️";
+
+    }
+
+    themeButton.addEventListener("click",function(){
+
+        document.body.classList.toggle("dark-mode");
+
+        if(document.body.classList.contains("dark-mode")){
+
+            localStorage.setItem("theme","dark");
+
+            themeButton.textContent="☀️";
+
+        }else{
+
+            localStorage.setItem("theme","light");
+
+            themeButton.textContent="🌙";
+
+        }
+
+    });
+
+}
