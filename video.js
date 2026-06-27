@@ -185,6 +185,19 @@ const likeCountElement = document.getElementById("like-count");
 if (likeButton && likeCountElement) {
     let likeCount = Number(likeCountElement.textContent);
     let isLiked = false;
+    const likeStorageKey = "like-" + currentVideo.id;
+
+    const savedLike = localStorage.getItem(likeStorageKey);
+
+    if(savedLike === "true"){
+
+        isLiked = true;
+
+        likeButton.classList.add("liked");
+
+        likeCount++;
+
+    }
 
     function formatLikeCount(number) {
         if (number >= 1000000) {
@@ -205,10 +218,12 @@ if (likeButton && likeCountElement) {
             likeCount--;
             isLiked = false;
             likeButton.classList.remove("liked");
+            localStorage.setItem(likeStorageKey,"false");
         } else {
             likeCount++;
             isLiked = true;
             likeButton.classList.add("liked");
+            localStorage.setItem(likeStorageKey,"true");
         }
 
         likeCountElement.textContent = formatLikeCount(likeCount);
