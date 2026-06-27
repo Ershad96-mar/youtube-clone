@@ -98,7 +98,7 @@ const videos = [
         category: "css",
 
         type: "youtube",
-        src: "https://noodlemagazine.com/watch/-131482780_456239095"
+        src: "https://cdn77-pr.pvvstream.pro/videos/360/-131482780_456239095.mp4?url=dmt2ZDYwOC5va2Nkbi5ydS8_ZXhwaXJlcz0xNzgyNzgxMjYxODI1JnNyY0lwPTQ1Ljg0LjI4LjU5JnByPTQwJnNyY0FnPVVOS05PV04mbXM9OTUuMTYzLjM1LjI1NCZ0eXBlPTEmc2lnPVRKVXlQR0Q2Um9jJmN0PTAmdXJscz0xODUuMjI2LjUzLjIyMCZjbGllbnRUeXBlPTE0JmFwcElkPTUxMjAwMDM4NDM5NyZpZD0xOTQ2MzA5MTY3Njk4&secure=1hV8AaisyftnEVzaDBK3RA%3D%3D%2C1782608461&dl=1"
     },
    {
     id: "got-s01e01-720p",
