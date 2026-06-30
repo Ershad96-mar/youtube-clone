@@ -157,7 +157,7 @@ app.get("/api",function(req,res){
 
 app.post(
 
-    "/api/upload",
+    "/api/videos",
 
     upload.fields([
 
