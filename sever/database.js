@@ -53,3 +53,44 @@ db.serialize(function(){
     `);
 
 });
+
+
+db.run(`
+
+CREATE TABLE IF NOT EXISTS users(
+
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+
+    username TEXT UNIQUE,
+
+    email TEXT UNIQUE,
+
+    password TEXT,
+
+    avatar TEXT,
+
+    role TEXT DEFAULT 'user'
+
+)
+
+`);
+
+db.run(`
+
+CREATE TABLE IF NOT EXISTS comments(
+
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+
+    videoId TEXT,
+
+    userId INTEGER,
+
+    username TEXT,
+
+    comment TEXT,
+
+    createdAt DATETIME DEFAULT CURRENT_TIMESTAMP
+
+)
+
+`);
