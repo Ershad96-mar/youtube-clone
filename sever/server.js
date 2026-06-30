@@ -1,7 +1,5 @@
 // ==========================================
-// YouTube Clone Server
-// SQLite Version
-// Part 1
+// YouTube Clone Server (SUPABASE VERSION)
 // ==========================================
 
 const express = require("express");
@@ -9,929 +7,291 @@ const cors = require("cors");
 const path = require("path");
 const fs = require("fs");
 const multer = require("multer");
-
-const db = require("./database");
+const { createClient } = require("@supabase/supabase-js");
 
 const app = express();
-
 const PORT = process.env.PORT || 3000;
+
+// ==========================================
+// SUPABASE CONFIG (اینجا را پر کن)
+// ==========================================
+
+const supabase = createClient(
+    process.env.SUPABASE_URL,
+    process.env.SUPABASE_KEY
+);
 
 // ==========================================
 // Middlewares
 // ==========================================
 
 app.use(cors());
-
 app.use(express.json());
-
-app.use(
-    express.urlencoded({
-        extended: true
-    })
-);
+app.use(express.urlencoded({ extended: true }));
 
 // ==========================================
-// Static Files
+// Static
 // ==========================================
 
-app.use(
+app.use(express.static(path.join(__dirname, "../public")));
 
-    express.static(
-
-        path.join(__dirname,"../public")
-
-    )
-
-);
-
-app.use(
-
-    "/uploads",
-
-    express.static(
-
-        path.join(__dirname,"../public/uploads")
-
-    )
-
-);
+app.use("/uploads", express.static(path.join(__dirname, "../public/uploads")));
 
 // ==========================================
-// Upload Folder
+// Upload folder
 // ==========================================
 
-const uploadFolder = path.join(
+const uploadFolder = path.join(__dirname, "../public/uploads");
 
-    __dirname,
-    "../public/uploads"
-
-);
-
-if(!fs.existsSync(uploadFolder)){
-
-    fs.mkdirSync(uploadFolder,{
-        recursive:true
-    });
-
+if (!fs.existsSync(uploadFolder)) {
+    fs.mkdirSync(uploadFolder, { recursive: true });
 }
 
 // ==========================================
-// Multer Storage
+// Multer
 // ==========================================
 
 const storage = multer.diskStorage({
-
-    destination:function(req,file,callback){
-
-        callback(null,uploadFolder);
-
+    destination: (req, file, cb) => cb(null, uploadFolder),
+    filename: (req, file, cb) => {
+        cb(
+            null,
+            Date.now() + "-" + Math.round(Math.random() * 1e6) + path.extname(file.originalname)
+        );
     },
+});
 
-    filename:function(req,file,callback){
+const upload = multer({ storage });
 
-        const extension =
-        path.extname(file.originalname);
+// ==========================================
+// HOME
+// ==========================================
 
-        const filename =
-        Date.now() +
-        "-" +
-        Math.round(Math.random()*1000000) +
-        extension;
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "../public/index.html"));
+});
 
-        callback(null,filename);
+// ==========================================
+// API TEST
+// ==========================================
 
+app.get("/api", (req, res) => {
+    res.json({ success: true, message: "API Running (Supabase)" });
+
+});
+
+// ==========================================
+// UPLOAD VIDEO
+// ==========================================
+
+app.post("/api/videos", upload.fields([
+    { name: "video", maxCount: 1 },
+    { name: "thumbnail", maxCount: 1 }
+]), async (req, res) => {
+
+    try {
+
+        const videoFile = req.files.video?.[0];
+        const thumbnailFile = req.files.thumbnail?.[0];
+
+        if (!videoFile) {
+            return res.status(400).json({ success: false, message: "Video required" });
+        }
+
+        const payload = {
+            id: Date.now().toString(),
+            title: req.body.title || "",
+            channel: req.body.channel || "My Channel",
+            subscribers: req.body.subscribers || "0",
+            views: req.body.views || "0",
+            date: req.body.date || "Today",
+            description: req.body.description || "",
+            image: thumbnailFile ? "/uploads/" + thumbnailFile.filename : "",
+            avatar: req.body.avatar || "M",
+            duration: req.body.duration || "00:00",
+            category: req.body.category || "General",
+            type: "site",
+            src: "/uploads/" + videoFile.filename
+        };
+
+        const { error } = await supabase.from("videos").insert([payload]);
+
+        if (error) {
+            return res.status(500).json({ success: false, error });
+        }
+
+        res.json({ success: true, message: "Uploaded", id: payload.id });
+
+    } catch (e) {
+        res.status(500).json({ success: false, error: e.message });
+    }
+});
+
+// ==========================================
+// GET ALL VIDEOS
+// ==========================================
+
+app.get("/api/videos", async (req, res) => {
+
+    const { data, error } = await supabase
+        .from("videos")
+        .select("*")
+        .order("id", { ascending: false });
+
+    if (error) return res.status(500).json([]);
+
+    res.json(data);
+});
+
+// ==========================================
+// GET SINGLE VIDEO
+// ==========================================
+
+app.get("/api/videos/:id", async (req, res) => {
+
+    const { data, error } = await supabase
+        .from("videos")
+        .select("*")
+        .eq("id", req.params.id)
+        .single();
+
+    if (error) return res.status(404).json({ success: false });
+
+    res.json(data);
+});
+
+// ==========================================
+// DELETE VIDEO
+// ==========================================
+
+app.delete("/api/videos/:id", async (req, res) => {
+
+    const { error } = await supabase
+        .from("videos")
+        .delete()
+        .eq("id", req.params.id);
+
+    if (error) return res.status(500).json({ success: false });
+
+    res.json({ success: true });
+});
+
+app.put("/api/videos/:id", async (req, res) => {
+
+    const { error } = await supabase
+        .from("videos")
+        .update({
+            title: req.body.title,
+            channel: req.body.channel,
+            subscribers: req.body.subscribers,
+            views: req.body.views,
+            date: req.body.date,
+            description: req.body.description,
+            avatar: req.body.avatar,
+            duration: req.body.duration,
+            category: req.body.category
+        })
+        .eq("id", req.params.id);
+
+    if (error) {
+        return res.status(500).json({ success: false });
     }
 
+    res.json({ success: true });
 });
 
-const upload = multer({
+// ==========================================
+// REGISTER
+// ==========================================
 
-    storage:storage,
+app.post("/api/register", async (req, res) => {
 
-    limits:{
+    const { username, email, password } = req.body;
 
-        fileSize:500*1024*1024
+    const { data: exists } = await supabase
+        .from("users")
+        .select("*")
+        .eq("email", email)
+        .single();
 
+    if (exists) {
+        return res.json({ success: false, message: "Email exists" });
     }
 
-});
-
-// ==========================================
-// Home
-// ==========================================
-
-app.get("/",function(req,res){
-
-    res.sendFile(
-
-        path.join(
-
-            __dirname,
-            "../public/index.html"
-
-        )
-
-    );
-
-});
-
-// ==========================================
-// API Test
-// ==========================================
-
-app.get("/api",function(req,res){
-
-    res.json({
-
-        success:true,
-
-        message:"Youtube API Running"
-
-    });
-
-});
-
-// ==========================================
-// Upload Video
-// wy wy wy wy
-// ==========================================
-
-app.post(
-
-    "/api/videos",
-
-    upload.fields([
-
-        {
-            name:"video",
-            maxCount:1
-        },
-
-        {
-            name:"thumbnail",
-            maxCount:1
-        }
-
-    ]),
-
-    function(req,res){
-
-        try{
-
-            if(!req.files){
-
-                return res.status(400).json({
-
-                    success:false,
-                    message:"Files not found."
-
-                });
-
-            }
-
-            const videoFile =
-            req.files.video
-            ? req.files.video[0]
-            : null;
-
-            const thumbnailFile =
-            req.files.thumbnail
-            ? req.files.thumbnail[0]
-            : null;
-
-            if(!videoFile){
-
-                return res.status(400).json({
-
-                    success:false,
-                    message:"Video file required."
-
-                });
-
-            }
-
-            const id =
-            Date.now().toString();
-
-            const title =
-            req.body.title || "";
-
-            const channel =
-            req.body.channel || "My Channel";
-
-            const subscribers =
-            req.body.subscribers || "0 Subscribers";
-
-            const views =
-            req.body.views || "0 Views";
-
-            const date =
-            req.body.date || "Today";
-
-            const description =
-            req.body.description || "";
-
-            const avatar =
-            req.body.avatar || "M";
-
-            const duration =
-            req.body.duration || "00:00";
-
-            const category =
-            req.body.category || "General";
-
-            const image =
-            thumbnailFile
-            ? "/uploads/" + thumbnailFile.filename
-            : "";
-
-            const src =
-            "/uploads/" + videoFile.filename;
-
-            db.run(
-
-                `
-
-                INSERT INTO videos(
-
-                    id,
-                    title,
-                    channel,
-                    subscribers,
-                    views,
-                    date,
-                    description,
-                    image,
-                    avatar,
-                    duration,
-                    category,
-                    type,
-                    src
-
-                )
-
-                VALUES(
-
-                    ?,?,?,?,?,?,?,?,?,?,?,?,?
-
-                )
-
-                `,
-
-                [
-
-                    id,
-
-                    title,
-
-                    channel,
-
-                    subscribers,
-
-                    views,
-
-                    date,
-
-                    description,
-
-                    image,
-
-                    avatar,
-
-                    duration,
-
-                    category,
-
-                    "site",
-
-                    src
-
-                ],
-
-                function(error){
-
-                    if(error){
-
-                        console.log(error);
-
-                        return res.status(500).json({
-
-                            success:false,
-                            message:"Database Error"
-
-                        });
-
-                    }
-
-                    res.json({
-
-                        success:true,
-
-                        message:"Video Uploaded",
-
-                        id:id
-
-                    });
-
-                }
-
-            );
-
-        }
-
-        catch(error){
-
-            console.log(error);
-
-            res.status(500).json({
-
-                success:false,
-
-                message:"Upload Error"
-
-            });
-
-        }
-
-    }
-
-);
-
-// ==========================================
-// Get All Videos
-// ==========================================
-
-app.get("/api/videos", function (req, res) {
-
-    db.all(
-
-        `
-        SELECT *
-        FROM videos
-        ORDER BY rowid DESC
-        `,
-
-        [],
-
-        function (error, rows) {
-
-            if (error) {
-
-                console.log(error);
-
-                return res.status(500).json([]);
-
-            }
-
-            res.json(rows);
-
-        }
-
-    );
-
-});
-
-// ==========================================
-// Get Single Video
-// ==========================================
-
-app.get("/api/videos/:id", function (req, res) {
-
-    const id = req.params.id;
-
-    db.get(
-
-        `
-        SELECT *
-        FROM videos
-        WHERE id=?
-        `,
-
-        [id],
-
-        function (error, row) {
-
-            if (error) {
-
-                console.log(error);
-
-                return res.status(500).json({
-
-                    success: false
-
-                });
-
-            }
-
-            if (!row) {
-
-                return res.status(404).json({
-
-                    success: false,
-
-                    message: "Video not found"
-
-                });
-
-            }
-
-            res.json(row);
-
-        }
-
-    );
-
-});
-
-// ==========================================
-// Delete Video
-// ==========================================
-
-app.delete("/api/videos/:id", function (req, res) {
-
-    const id = req.params.id;
-
-    db.get(
-
-        `
-        SELECT *
-        FROM videos
-        WHERE id=?
-        `,
-
-        [id],
-
-        function (error, video) {
-
-            if (error || !video) {
-
-                return res.status(404).json({
-
-                    success: false
-
-                });
-
-            }
-
-            if (video.src) {
-
-                const videoPath = path.join(
-
-                    __dirname,
-
-                    "../public",
-
-                    video.src
-
-                );
-
-                if (fs.existsSync(videoPath)) {
-
-                    fs.unlinkSync(videoPath);
-
-                }
-
-            }
-
-            if (video.image) {
-
-                const imagePath = path.join(
-
-                    __dirname,
-
-                    "../public",
-
-                    video.image
-
-                );
-
-                if (fs.existsSync(imagePath)) {
-
-                    fs.unlinkSync(imagePath);
-
-                }
-
-            }
-
-            db.run(
-
-                `
-                DELETE FROM videos
-                WHERE id=?
-                `,
-
-                [id],
-
-                function () {
-
-                    res.json({
-
-                        success: true,
-
-                        message: "Video Deleted"
-
-                    });
-
-                }
-
-            );
-
-        }
-
-    );
-
-});
-
-// ==========================================
-// Update Video
-// ==========================================
-
-app.put("/api/videos/:id", function (req, res) {
-
-    const id = req.params.id;
-
-    db.run(
-
-        `
-        UPDATE videos
-
-        SET
-
-        title=?,
-        channel=?,
-        subscribers=?,
-        views=?,
-        date=?,
-        description=?,
-        avatar=?,
-        duration=?,
-        category=?
-
-        WHERE id=?
-        `,
-
-        [
-
-            req.body.title,
-
-            req.body.channel,
-
-            req.body.subscribers,
-
-            req.body.views,
-
-            req.body.date,
-
-            req.body.description,
-
-            req.body.avatar,
-
-            req.body.duration,
-
-            req.body.category,
-
-            id
-
-        ],
-
-        function (error) {
-
-            if (error) {
-
-                console.log(error);
-
-                return res.status(500).json({
-
-                    success: false
-
-                });
-
-            }
-
-            res.json({
-
-                success: true,
-
-                message: "Video Updated"
-
-            });
-
-        }
-
-    );
-
-});
-
-// ==========================================
-// Register
-// ==========================================
-
-app.post("/api/register", function(req,res){
-
-    const username = req.body.username;
-    const email = req.body.email;
-    const password = req.body.password;
-
-    if(!username || !email || !password){
-
-        return res.status(400).json({
-
-            success:false,
-
-            message:"Please fill all fields."
-
-        });
-
-    }
-
-    db.get(
-
-        `
-
-        SELECT *
-
-        FROM users
-
-        WHERE email=?
-
-        `,
-
-        [email],
-
-        function(error,user){
-
-            if(user){
-
-                return res.json({
-
-                    success:false,
-
-                    message:"Email already exists."
-
-                });
-
-            }
-
-            db.run(
-
-                `
-
-                INSERT INTO users(
-
-                    username,
-                    email,
-                    password,
-                    avatar,
-                    role
-
-                )
-
-                VALUES(
-
-                    ?,?,?,?,?
-
-                )
-
-                `,
-
-                [
-
-                    username,
-
-                    email,
-
-                    password,
-
-                    username.charAt(0).toUpperCase(),
-
-                    "user"
-
-                ],
-
-                function(error){
-
-                    if(error){
-
-                        console.log(error);
-
-                        return res.status(500).json({
-
-                            success:false
-
-                        });
-
-                    }
-
-                    res.json({
-
-                        success:true,
-
-                        message:"Register Success"
-
-                    });
-
-                }
-
-            );
-
-        }
-
-    );
-
-});
-
-// ==========================================
-// Login
-// ==========================================
-
-app.post("/api/login",function(req,res){
-
-    const email = req.body.email;
-
-    const password = req.body.password;
-
-    db.get(
-
-        `
-
-        SELECT *
-
-        FROM users
-
-        WHERE email=?
-
-        AND password=?
-
-        `,
-
-        [
-
-            email,
-
-            password
-
-        ],
-
-        function(error,user){
-
-            if(error){
-
-                console.log(error);
-
-                return res.status(500).json({
-
-                    success:false
-
-                });
-
-            }
-
-            if(!user){
-
-                return res.json({
-
-                    success:false,
-
-                    message:"User Not Found"
-
-                });
-
-            }
-
-            res.json({
-
-                success:true,
-
-                token:
-
-                Date.now().toString(),
-
-                username:user.username,
-
-                avatar:user.avatar,
-
-                role:user.role
-
-            });
-
-        }
-
-    );
-
-});
-
-// ==========================================
-// Get Users
-// ==========================================
-
-app.get("/api/users",function(req,res){
-
-    db.all(
-
-        `
-
-        SELECT
-
-        id,
+    const { error } = await supabase.from("users").insert([{
         username,
         email,
-        avatar,
-        role
+        password,
+        avatar: username.charAt(0),
+        role: "user"
+    }]);
 
-        FROM users
+    if (error) return res.status(500).json({ success: false });
 
-        ORDER BY id DESC
-
-        `,
-
-        [],
-
-        function(error,rows){
-
-            if(error){
-
-                return res.status(500).json([]);
-
-            }
-
-            res.json(rows);
-
-        }
-
-    );
-
+    res.json({ success: true });
 });
 
 // ==========================================
-// Delete User
+// LOGIN
 // ==========================================
 
-app.delete("/api/users/:id",function(req,res){
+app.post("/api/login", async (req, res) => {
 
-    db.run(
+    const { email, password } = req.body;
 
-        `
+    const { data, error } = await supabase
+        .from("users")
+        .select("*")
+        .eq("email", email)
+        .eq("password", password)
+        .single();
 
-        DELETE FROM users
-
-        WHERE id=?
-
-        `,
-
-        [
-
-            req.params.id
-
-        ],
-
-        function(error){
-
-            if(error){
-
-                return res.status(500).json({
-
-                    success:false
-
-                });
-
-            }
-
-            res.json({
-
-                success:true,
-
-                message:"User Deleted"
-
-            });
-
-        }
-
-    );
-
-});
-
-// ==========================================
-// Start Server
-// ==========================================
-
-app.listen(
-
-    PORT,
-
-    function(){
-
-        console.log("");
-
-        console.log("===================================");
-
-        console.log(" YouTube Clone Server Started");
-
-        console.log(" http://localhost:3000");
-
-        console.log("===================================");
-
-        console.log("");
-
+    if (!data) {
+        return res.json({ success: false, message: "Not found" });
     }
 
-);
+    res.json({
+        success: true,
+        token: Date.now().toString(),
+        username: data.username,
+        avatar: data.avatar,
+        role: data.role
+    });
+});
+
+
+app.get("/api/users", async (req, res) => {
+
+    const { data, error } = await supabase
+        .from("users")
+        .select("id,username,email,avatar,role")
+        .order("id", { ascending: false });
+
+    if (error) {
+        return res.status(500).json([]);
+    }
+
+    res.json(data);
+});
+
+app.delete("/api/users/:id", async (req, res) => {
+
+    const { error } = await supabase
+        .from("users")
+        .delete()
+        .eq("id", req.params.id);
+
+    if (error) {
+        return res.status(500).json({ success: false });
+    }
+
+    res.json({ success: true });
+});
+
+// ==========================================
+// START SERVER
+// ==========================================
+
+app.listen(PORT, () => {
+    console.log("Server running on port", PORT);
+});
