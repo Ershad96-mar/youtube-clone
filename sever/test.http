@@ -1,0 +1,8 @@
+
+PUT http://localhost:3000/api/videos/html-video
+Content-Type: application/json
+
+{
+    "title":"HTML Complete Course",
+    "views":"999K views"
+}
