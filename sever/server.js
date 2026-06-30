@@ -1,5 +1,5 @@
 // ==========================================
-// YouTube Clone Server (SUPABASE VERSION)
+// YouTube Clone Server (Supabase Version)
 // ==========================================
 
 const express = require("express");
@@ -8,13 +8,18 @@ const path = require("path");
 const fs = require("fs");
 const multer = require("multer");
 const { createClient } = require("@supabase/supabase-js");
+require("dotenv").config();
+
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
 // ==========================================
-// SUPABASE CONFIG (اینجا را پر کن)
+// Supabase Setup
 // ==========================================
+
+console.log("URL:", process.env.SUPABASE_URL);
+console.log("KEY:", process.env.SUPABASE_KEY);
 
 const supabase = createClient(
     process.env.SUPABASE_URL,
@@ -30,15 +35,14 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // ==========================================
-// Static
+// Static Files
 // ==========================================
 
 app.use(express.static(path.join(__dirname, "../public")));
-
 app.use("/uploads", express.static(path.join(__dirname, "../public/uploads")));
 
 // ==========================================
-// Upload folder
+// Upload Folder
 // ==========================================
 
 const uploadFolder = path.join(__dirname, "../public/uploads");
@@ -48,23 +52,24 @@ if (!fs.existsSync(uploadFolder)) {
 }
 
 // ==========================================
-// Multer
+// Multer Setup
 // ==========================================
 
 const storage = multer.diskStorage({
-    destination: (req, file, cb) => cb(null, uploadFolder),
-    filename: (req, file, cb) => {
-        cb(
-            null,
-            Date.now() + "-" + Math.round(Math.random() * 1e6) + path.extname(file.originalname)
-        );
+    destination: function (req, file, cb) {
+        cb(null, uploadFolder);
     },
+    filename: function (req, file, cb) {
+        const ext = path.extname(file.originalname);
+        const name = Date.now() + "-" + Math.round(Math.random() * 1000000) + ext;
+        cb(null, name);
+    }
 });
 
 const upload = multer({ storage });
 
 // ==========================================
-// HOME
+// Home
 // ==========================================
 
 app.get("/", (req, res) => {
@@ -76,12 +81,11 @@ app.get("/", (req, res) => {
 // ==========================================
 
 app.get("/api", (req, res) => {
-    res.json({ success: true, message: "API Running (Supabase)" });
-
+    res.json({ success: true, message: "API Running" });
 });
 
 // ==========================================
-// UPLOAD VIDEO
+// UPLOAD VIDEO (Supabase)
 // ==========================================
 
 app.post("/api/videos", upload.fields([
@@ -91,15 +95,20 @@ app.post("/api/videos", upload.fields([
 
     try {
 
-        const videoFile = req.files.video?.[0];
-        const thumbnailFile = req.files.thumbnail?.[0];
+        const videoFile = req.files.video ? req.files.video[0] : null;
+        const thumbnailFile = req.files.thumbnail ? req.files.thumbnail[0] : null;
 
         if (!videoFile) {
-            return res.status(400).json({ success: false, message: "Video required" });
+            return res.status(400).json({
+                success: false,
+                message: "Video required"
+            });
         }
 
-        const payload = {
-            id: Date.now().toString(),
+        const id = Date.now().toString();
+
+        const newVideo = {
+            id,
             title: req.body.title || "",
             channel: req.body.channel || "My Channel",
             subscribers: req.body.subscribers || "0",
@@ -114,16 +123,30 @@ app.post("/api/videos", upload.fields([
             src: "/uploads/" + videoFile.filename
         };
 
-        const { error } = await supabase.from("videos").insert([payload]);
+        const { error } = await supabase
+            .from("videos")
+            .insert([newVideo]);
 
         if (error) {
-            return res.status(500).json({ success: false, error });
+            console.log(error);
+            return res.status(500).json({
+                success: false,
+                message: "Database Error"
+            });
         }
 
-        res.json({ success: true, message: "Uploaded", id: payload.id });
+        res.json({
+            success: true,
+            message: "Video Uploaded",
+            id
+        });
 
-    } catch (e) {
-        res.status(500).json({ success: false, error: e.message });
+    } catch (err) {
+        console.log(err);
+        res.status(500).json({
+            success: false,
+            message: "Server Error"
+        });
     }
 });
 
@@ -138,7 +161,9 @@ app.get("/api/videos", async (req, res) => {
         .select("*")
         .order("id", { ascending: false });
 
-    if (error) return res.status(500).json([]);
+    if (error) {
+        return res.status(500).json([]);
+    }
 
     res.json(data);
 });
@@ -155,7 +180,9 @@ app.get("/api/videos/:id", async (req, res) => {
         .eq("id", req.params.id)
         .single();
 
-    if (error) return res.status(404).json({ success: false });
+    if (error) {
+        return res.status(404).json({ success: false });
+    }
 
     res.json(data);
 });
@@ -171,33 +198,11 @@ app.delete("/api/videos/:id", async (req, res) => {
         .delete()
         .eq("id", req.params.id);
 
-    if (error) return res.status(500).json({ success: false });
-
-    res.json({ success: true });
-});
-
-app.put("/api/videos/:id", async (req, res) => {
-
-    const { error } = await supabase
-        .from("videos")
-        .update({
-            title: req.body.title,
-            channel: req.body.channel,
-            subscribers: req.body.subscribers,
-            views: req.body.views,
-            date: req.body.date,
-            description: req.body.description,
-            avatar: req.body.avatar,
-            duration: req.body.duration,
-            category: req.body.category
-        })
-        .eq("id", req.params.id);
-
     if (error) {
         return res.status(500).json({ success: false });
     }
 
-    res.json({ success: true });
+    res.json({ success: true, message: "Deleted" });
 });
 
 // ==========================================
@@ -208,27 +213,40 @@ app.post("/api/register", async (req, res) => {
 
     const { username, email, password } = req.body;
 
-    const { data: exists } = await supabase
-        .from("users")
-        .select("*")
-        .eq("email", email)
-        .single();
-
-    if (exists) {
-        return res.json({ success: false, message: "Email exists" });
+    if (!username || !email || !password) {
+        return res.status(400).json({
+            success: false,
+            message: "Fill all fields"
+        });
     }
 
-    const { error } = await supabase.from("users").insert([{
-        username,
-        email,
-        password,
-        avatar: username.charAt(0),
-        role: "user"
-    }]);
+    const { data: existing } = await supabase
+        .from("users")
+        .select("*")
+        .eq("email", email);
 
-    if (error) return res.status(500).json({ success: false });
+    if (existing.length > 0) {
+        return res.json({
+            success: false,
+            message: "Email exists"
+        });
+    }
 
-    res.json({ success: true });
+    const { error } = await supabase
+        .from("users")
+        .insert([{
+            username,
+            email,
+            password,
+            avatar: username.charAt(0).toUpperCase(),
+            role: "user"
+        }]);
+
+    if (error) {
+        return res.status(500).json({ success: false });
+    }
+
+    res.json({ success: true, message: "Registered" });
 });
 
 // ==========================================
@@ -243,29 +261,35 @@ app.post("/api/login", async (req, res) => {
         .from("users")
         .select("*")
         .eq("email", email)
-        .eq("password", password)
-        .single();
+        .eq("password", password);
 
-    if (!data) {
-        return res.json({ success: false, message: "Not found" });
+    if (error || data.length === 0) {
+        return res.json({
+            success: false,
+            message: "Invalid login"
+        });
     }
+
+    const user = data[0];
 
     res.json({
         success: true,
         token: Date.now().toString(),
-        username: data.username,
-        avatar: data.avatar,
-        role: data.role
+        username: user.username,
+        avatar: user.avatar,
+        role: user.role
     });
 });
 
+// ==========================================
+// USERS
+// ==========================================
 
 app.get("/api/users", async (req, res) => {
 
     const { data, error } = await supabase
         .from("users")
-        .select("id,username,email,avatar,role")
-        .order("id", { ascending: false });
+        .select("id, username, email, avatar, role");
 
     if (error) {
         return res.status(500).json([]);
@@ -273,6 +297,10 @@ app.get("/api/users", async (req, res) => {
 
     res.json(data);
 });
+
+// ==========================================
+// DELETE USER
+// ==========================================
 
 app.delete("/api/users/:id", async (req, res) => {
 
@@ -293,5 +321,5 @@ app.delete("/api/users/:id", async (req, res) => {
 // ==========================================
 
 app.listen(PORT, () => {
-    console.log("Server running on port", PORT);
+    console.log("Server running on http://localhost:" + PORT);
 });
