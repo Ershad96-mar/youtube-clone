@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>
+
+        YouTube Admin Dashboard
+
+    </title>
+
+    <link
+        rel="stylesheet"
+        href="admin.css">
+
+</head>
+
+<body>
+
+<!-- ===========================================
+HEADER
+=========================================== -->
+
+<header class="admin-header">
+
+    <div class="header-left">
+
+        <button
+            id="menu-btn"
+            class="icon-btn">
+
+            ☰
+
+        </button>
+
+        <h2 class="logo">
+
+            YouTube Studio
+
+        </h2>
+
+    </div>
+
+    <div class="header-center">
+
+        <input
+            id="search-input"
+            type="text"
+            placeholder="Search videos...">
+
+        <button
+            id="search-btn"
+            class="search-btn">
+
+            🔍
+
+        </button>
+
+    </div>
+
+    <div class="header-right">
+
+        <button
+            id="theme-btn"
+            class="icon-btn">
+
+            🌙
+
+        </button>
+
+        <button
+            id="notification-btn"
+            class="icon-btn">
+
+            🔔
+
+        </button>
+
+        <button
+            id="logout-btn"
+            class="logout-btn">
+
+            Logout
+
+        </button>
+
+        <button
+            id="profile-btn"
+            class="profile-btn">
+
+            A
+
+        </button>
+
+    </div>
+
+</header>
+
+<!-- ===========================================
+PAGE
+=========================================== -->
+
+<div class="admin-page">
+
+<!-- ===========================================
+SIDEBAR
+=========================================== -->
+
+<aside
+    id="sidebar"
+    class="sidebar">
+
+    <div class="sidebar-title">
+
+        Dashboard
+
+    </div>
+
+    <ul>
+
+        <li class="active">
+
+            🏠 Dashboard
+
+        </li>
+
+        <li id="videos-page">
+
+            🎬 Videos
+
+        </li>
+
+        <li id="upload-page">
+
+            ⬆ Upload
+
+        </li>
+
+        <li id="users-page">
+
+            👤 Users
+
+        </li>
+
+        <li id="comments-page">
+
+            💬 Comments
+
+        </li>
+
+        <li id="analytics-page">
+
+            📈 Analytics
+
+        </li>
+
+        <li id="settings-page">
+
+            ⚙ Settings
+
+        </li>
+
+    </ul>
+
+</aside>
+
+<!-- ===========================================
+CONTENT
+=========================================== -->
+
+<main class="content">
+
+<!-- ===========================================
+CARDS
+=========================================== -->
+
+<section class="cards">
+
+<div class="card">
+
+    <span>Total Videos</span>
+
+    <h2 id="total-videos">
+
+        0
+
+    </h2>
+
+</div>
+
+<div class="card">
+
+    <span>Total Users</span>
+
+    <h2 id="total-users">
+
+        0
+
+    </h2>
+
+</div>
+
+<div class="card">
+
+    <span>Total Views</span>
+
+    <h2 id="total-views">
+
+        0
+
+    </h2>
+
+</div>
+
+<div class="card">
+
+    <span>Total Comments</span>
+
+    <h2 id="total-comments">
+
+        0
+
+    </h2>
+
+</div>
+
+</section>
+
+<!-- ===========================================
+TABLE
+=========================================== -->
+
+<section class="table-box">
+
+<div class="table-header">
+
+<h2>
+
+Videos
+
+</h2>
+
+<div>
+
+<button
+    id="refresh-btn"
+    class="primary-btn">
+
+Refresh
+
+</button>
+
+<button
+    id="new-video-btn"
+    class="primary-btn">
+
++ New Video
+
+</button>
+
+</div>
+
+</div>
+
+<table>
+
+<thead>
+
+<tr>
+
+<th>
+
+Thumbnail
+
+</th>
+
+<th>
+
+Title
+
+</th>
+
+<th>
+
+Channel
+
+</th>
+
+<th>
+
+Views
+
+</th>
+
+<th>
+
+Date
+
+</th>
+
+<th>
+
+Category
+
+</th>
+
+<th>
+
+Actions
+
+</th>
+
+</tr>
+
+</thead>
+
+<tbody id="videos-table">
+
+</tbody>
+
+</table>
+
+</section>
+
+<!-- ===========================================
+EDIT VIDEO MODAL
+=========================================== -->
+
+<div
+    id="edit-modal"
+    class="modal">
+
+    <div class="modal-content">
+
+        <div class="modal-header">
+
+            <h2>
+
+                Edit Video
+
+            </h2>
+
+            <button
+                id="close-edit-modal"
+                class="close-btn">
+
+                ✕
+
+            </button>
+
+        </div>
+
+        <form
+            id="edit-form">
+
+            <input
+                type="hidden"
+                id="edit-id">
+
+            <div class="form-group">
+
+                <label>
+
+                    Title
+
+                </label>
+
+                <input
+                    id="edit-title"
+                    type="text">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+
+                    Channel
+
+                </label>
+
+                <input
+                    id="edit-channel"
+                    type="text">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+
+                    Category
+
+                </label>
+
+                <input
+                    id="edit-category"
+                    type="text">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+
+                    Views
+
+                </label>
+
+                <input
+                    id="edit-views"
+                    type="text">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+
+                    Subscribers
+
+                </label>
+
+                <input
+                    id="edit-subscribers"
+                    type="text">
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+
+                    Description
+
+                </label>
+
+                <textarea
+                    id="edit-description"
+                    rows="6"></textarea>
+
+            </div>
+
+            <div class="modal-buttons">
+
+                <button
+                    type="button"
+                    id="cancel-edit"
+                    class="secondary-btn">
+
+                    Cancel
+
+                </button>
+
+                <button
+                    type="submit"
+                    class="primary-btn">
+
+                    Save Changes
+
+                </button>
+
+            </div>
+
+        </form>
+
+    </div>
+
+</div>
+
+<!-- ===========================================
+DELETE MODAL
+=========================================== -->
+
+<div
+    id="delete-modal"
+    class="modal">
+
+    <div class="delete-box">
+
+        <h2>
+
+            Delete Video
+
+        </h2>
+
+        <p>
+
+            Are you sure you want to permanently delete this video?
+
+        </p>
+
+        <div class="modal-buttons">
+
+            <button
+                id="cancel-delete"
+                class="secondary-btn">
+
+                Cancel
+
+            </button>
+
+            <button
+                id="confirm-delete"
+                class="danger-btn">
+
+                Delete
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ===========================================
+LOADING
+=========================================== -->
+
+<div
+    id="loading-screen"
+    class="loading-screen">
+
+    <div class="spinner"></div>
+
+    <p>
+
+        Loading Dashboard...
+
+    </p>
+
+</div>
+
+<!-- ===========================================
+TOAST
+=========================================== -->
+
+<div
+    id="toast"
+    class="toast">
+
+    Saved Successfully
+
+</div>
+
+</main>
+
+</div>
+
+<!-- ===========================================
+FOOTER
+=========================================== -->
+
+<footer class="admin-footer">
+
+    <p>
+
+        YouTube Studio Dashboard © 2026
+
+    </p>
+
+</footer>
+
+<script src="admin.js"></script>
+
+</body>
+
+</html>

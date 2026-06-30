@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>YouTube Studio</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css">
+
+    <link
+        rel="stylesheet"
+        href="studio.css">
+
+</head>
+
+<body>
+
+<header class="studio-header">
+
+    <div class="studio-logo">
+
+        <a href="index.html">
+
+            YouTube Studio
+
+        </a>
+
+    </div>
+
+    <div class="studio-right">
+
+        <button
+            id="theme-btn"
+            class="icon-btn">
+
+            🌙
+
+        </button>
+
+        <button
+            id="profile-btn"
+            class="profile-btn">
+
+            M
+
+        </button>
+
+    </div>
+
+</header>
+
+<div class="studio-container">
+
+<aside class="studio-sidebar">
+
+    <h3>
+
+        Studio
+
+    </h3>
+
+    <ul>
+
+        <li class="active">
+
+            Upload Video
+
+        </li>
+
+        <li>
+
+            Dashboard
+
+        </li>
+
+        <li>
+
+            Analytics
+
+        </li>
+
+        <li>
+
+            Comments
+
+        </li>
+
+    </ul>
+
+</aside>
+
+<main class="studio-content">
+
+<h1>
+
+Upload New Video
+
+</h1>
+
+<form
+    id="upload-form">
+
+<div class="studio-grid">
+
+<div class="left-upload">
+
+            <label>
+
+            Video Title
+
+        </label>
+
+        <input
+            type="text"
+            id="title"
+            placeholder="Enter video title"
+            required>
+
+        <label>
+
+            Description
+
+        </label>
+
+        <textarea
+            id="description"
+            rows="8"
+            placeholder="Write video description"></textarea>
+
+        <label>
+
+            Category
+
+        </label>
+
+        <select id="category">
+
+            <option>Programming</option>
+
+            <option>Gaming</option>
+
+            <option>Music</option>
+
+            <option>Education</option>
+
+            <option>News</option>
+
+            <option>Live</option>
+
+            <option>Movies</option>
+
+            <option>Sports</option>
+
+        </select>
+
+        <label>
+
+            Channel Name
+
+        </label>
+
+        <input
+            type="text"
+            id="channel"
+            placeholder="Channel Name">
+
+    </div>
+
+    <div class="right-upload">
+
+        <div class="upload-box">
+
+            <h3>
+
+                Thumbnail
+
+            </h3>
+
+            <img
+                id="thumbnail-preview"
+                class="preview-image"
+                src="">
+
+            <input
+                type="file"
+                id="thumbnail"
+                accept="image/*">
+
+        </div>
+
+        <div class="upload-box">
+
+            <h3>
+
+                Video File
+
+            </h3>
+
+            <video
+                id="video-preview"
+                class="preview-video"
+                controls>
+
+            </video>
+
+            <input
+                type="file"
+                id="video"
+                accept="video/*">
+
+        </div>
+
+        <div class="progress-area">
+
+            <div
+                id="progress-bar">
+
+            </div>
+
+        </div>
+
+        <div
+            id="upload-status">
+
+        </div>
+
+    </div>
+
+</div>
+
+        <div class="studio-actions">
+
+            <button
+                type="submit"
+                class="publish-btn">
+
+                Publish Video
+
+            </button>
+
+            <button
+                type="reset"
+                class="cancel-btn">
+
+                Reset
+
+            </button>
+
+        </div>
+
+    </form>
+
+</main>
+
+</div>
+
+<script src="studio.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,620 @@
+/* ===========================================
+   Studio Layout
+=========================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+
+    font-family:Arial,Helvetica,sans-serif;
+
+    background:#f6f6f6;
+
+    color:#222;
+
+}
+
+/* ===========================================
+   Header
+=========================================== */
+
+.studio-header{
+
+    position:fixed;
+
+    top:0;
+    left:0;
+    right:0;
+
+    height:70px;
+
+    background:#ffffff;
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:0 30px;
+
+    border-bottom:1px solid #e5e5e5;
+
+    z-index:999;
+
+}
+
+.studio-logo a{
+
+    text-decoration:none;
+
+    font-size:28px;
+
+    font-weight:bold;
+
+    color:#ff0000;
+
+}
+
+.studio-right{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+}
+
+/* ===========================================
+   Main Layout
+=========================================== */
+
+.studio-container{
+
+    display:flex;
+
+    margin-top:70px;
+
+    min-height:calc(100vh - 70px);
+
+}
+
+/* ===========================================
+   Sidebar
+=========================================== */
+
+.studio-sidebar{
+
+    width:250px;
+
+    background:#ffffff;
+
+    border-right:1px solid #e5e5e5;
+
+    padding:30px 0;
+
+}
+
+.studio-sidebar h3{
+
+    padding:0 25px;
+
+    margin-bottom:25px;
+
+    font-size:24px;
+
+}
+
+.studio-sidebar ul{
+
+    list-style:none;
+
+}
+
+.studio-sidebar li{
+
+    padding:15px 25px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+    font-size:16px;
+
+}
+
+.studio-sidebar li:hover{
+
+    background:#f3f3f3;
+
+}
+
+.studio-sidebar li.active{
+
+    background:#ffecec;
+
+    color:#ff0000;
+
+    font-weight:bold;
+
+}
+
+/* ===========================================
+   Content
+=========================================== */
+
+.studio-content{
+
+    flex:1;
+
+    padding:35px;
+
+}
+
+.studio-content h1{
+
+    font-size:34px;
+
+    margin-bottom:30px;
+
+}
+/* ===========================================
+   Upload Form
+=========================================== */
+
+#upload-form{
+
+    width:100%;
+
+}
+
+.studio-grid{
+
+    display:grid;
+
+    grid-template-columns:2fr 1fr;
+
+    gap:35px;
+
+}
+
+.left-upload{
+
+    background:#ffffff;
+
+    border-radius:16px;
+
+    padding:30px;
+
+    box-shadow:0 4px 18px rgba(0,0,0,.08);
+
+}
+
+.left-upload label{
+
+    display:block;
+
+    margin-top:20px;
+
+    margin-bottom:10px;
+
+    font-weight:bold;
+
+    font-size:15px;
+
+}
+
+.left-upload input{
+
+    width:100%;
+
+    height:50px;
+
+    padding:0 15px;
+
+    border:1px solid #d9d9d9;
+
+    border-radius:12px;
+
+    font-size:15px;
+
+    outline:none;
+
+    transition:.25s;
+
+}
+
+.left-upload textarea{
+
+    width:100%;
+
+    resize:none;
+
+    padding:15px;
+
+    border:1px solid #d9d9d9;
+
+    border-radius:12px;
+
+    font-size:15px;
+
+    outline:none;
+
+    transition:.25s;
+
+}
+
+.left-upload select{
+
+    width:100%;
+
+    height:50px;
+
+    border:1px solid #d9d9d9;
+
+    border-radius:12px;
+
+    padding:0 15px;
+
+    font-size:15px;
+
+    background:white;
+
+    outline:none;
+
+}
+
+.left-upload input:focus,
+.left-upload textarea:focus,
+.left-upload select:focus{
+
+    border-color:#ff0000;
+
+    box-shadow:0 0 0 4px rgba(255,0,0,.08);
+
+}
+
+.right-upload{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:22px;
+
+}
+
+.upload-box{
+
+    background:#ffffff;
+
+    border-radius:16px;
+
+    padding:25px;
+
+    box-shadow:0 4px 18px rgba(0,0,0,.08);
+
+}
+
+.upload-box h3{
+
+    margin-bottom:18px;
+
+    font-size:18px;
+
+}
+
+.preview-image{
+
+    width:100%;
+
+    height:220px;
+
+    object-fit:cover;
+
+    border-radius:12px;
+
+    background:#efefef;
+
+    margin-bottom:18px;
+
+}
+
+.preview-video{
+
+    width:100%;
+
+    height:220px;
+
+    border-radius:12px;
+
+    background:black;
+
+    margin-bottom:18px;
+
+}
+
+.upload-box input[type=file]{
+
+    width:100%;
+
+}
+
+/* ===========================================
+   Progress
+=========================================== */
+
+.progress-area{
+
+    width:100%;
+
+    height:10px;
+
+    background:#e8e8e8;
+
+    border-radius:20px;
+
+    overflow:hidden;
+
+    margin-top:10px;
+
+}
+
+#progress-bar{
+
+    width:0%;
+
+    height:100%;
+
+    background:linear-gradient(
+        90deg,
+        #ff0000,
+        #ff4d4d
+    );
+
+    transition:.3s;
+
+}
+
+/* ===========================================
+   Status
+=========================================== */
+
+#upload-status{
+
+    margin-top:18px;
+
+    font-size:15px;
+
+    font-weight:bold;
+
+    color:#2e7d32;
+
+}
+
+/* ===========================================
+   Buttons
+=========================================== */
+
+.studio-actions{
+
+    display:flex;
+
+    justify-content:flex-end;
+
+    gap:15px;
+
+    margin-top:35px;
+
+}
+
+.publish-btn{
+
+    border:none;
+
+    background:#ff0000;
+
+    color:white;
+
+    padding:14px 30px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    transition:.25s;
+
+}
+
+.publish-btn:hover{
+
+    background:#d90000;
+
+    transform:translateY(-2px);
+
+}
+
+.cancel-btn{
+
+    border:none;
+
+    background:#ececec;
+
+    color:#222;
+
+    padding:14px 30px;
+
+    border-radius:12px;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    transition:.25s;
+
+}
+
+.cancel-btn:hover{
+
+    background:#dddddd;
+
+}
+
+/* ===========================================
+   Responsive
+=========================================== */
+
+@media(max-width:1000px){
+
+    .studio-grid{
+
+        grid-template-columns:1fr;
+
+    }
+
+    .studio-sidebar{
+
+        display:none;
+
+    }
+
+    .studio-content{
+
+        padding:20px;
+
+    }
+
+}
+
+@media(max-width:700px){
+
+    .studio-header{
+
+        padding:0 15px;
+
+    }
+
+    .studio-logo a{
+
+        font-size:22px;
+
+    }
+
+    .studio-content h1{
+
+        font-size:28px;
+
+    }
+
+    .left-upload,
+    .upload-box{
+
+        padding:18px;
+
+    }
+
+    .preview-image,
+    .preview-video{
+
+        height:180px;
+
+    }
+
+    .studio-actions{
+
+        flex-direction:column;
+
+    }
+
+    .publish-btn,
+    .cancel-btn{
+
+        width:100%;
+
+    }
+
+}
+
+/* ===========================================
+   Dark Mode
+=========================================== */
+
+body.dark-mode{
+
+    background:#0f0f0f;
+
+}
+
+body.dark-mode .studio-header,
+body.dark-mode .studio-sidebar,
+body.dark-mode .left-upload,
+body.dark-mode .upload-box{
+
+    background:#1b1b1b;
+
+    color:#ffffff;
+
+}
+
+body.dark-mode .studio-sidebar{
+
+    border-color:#333;
+
+}
+
+body.dark-mode .studio-sidebar li:hover{
+
+    background:#2c2c2c;
+
+}
+
+body.dark-mode .studio-sidebar li.active{
+
+    background:#3b1b1b;
+
+    color:#ff4d4d;
+
+}
+
+body.dark-mode .left-upload input,
+body.dark-mode .left-upload textarea,
+body.dark-mode .left-upload select{
+
+    background:#2a2a2a;
+
+    color:white;
+
+    border:1px solid #444;
+
+}
+
+body.dark-mode .cancel-btn{
+
+    background:#2d2d2d;
+
+    color:white;
+
+}
+
+body.dark-mode .cancel-btn:hover{
+
+    background:#3d3d3d;
+
+}
+
+body.dark-mode .progress-area{
+
+    background:#2f2f2f;
+
+}

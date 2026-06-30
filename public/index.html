@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="fa">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+    <title>YouTube Clone</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css">
+
+</head>
+
+<body>
+
+<!-- ===========================
+        HEADER
+============================ -->
+
+<header class="topbar">
+
+    <!-- Right -->
+
+    <div class="right-section">
+
+        <button
+            class="icon-btn menu-btn">
+
+            ☰
+
+        </button>
+
+        <h2 class="logo">
+
+            YouTube
+
+        </h2>
+
+        <button
+            id="theme-btn"
+            class="icon-btn">
+
+            🌙
+
+        </button>
+
+        <button
+            class="icon-btn">
+
+            🔔
+
+        </button>
+
+    </div>
+
+    <!-- Center -->
+
+    <div class="center-section">
+
+        <input
+
+            type="text"
+
+            class="search-input"
+
+            placeholder="Search"
+
+        >
+
+        <button
+            class="search-btn">
+
+            🔍
+
+        </button>
+
+        <button
+            class="icon-btn">
+
+            🎤
+
+        </button>
+
+    </div>
+
+    <!-- Left -->
+
+    <div class="left-section">
+
+        <button
+
+            id="login-btn"
+
+            class="login-btn">
+
+            Sign In
+
+        </button>
+
+        <button
+
+            id="register-btn"
+
+            class="login-btn">
+
+            Register
+
+        </button>
+
+        <button
+
+            id="logout-btn"
+
+            class="login-btn"
+
+            style="display:none;">
+
+            Logout
+
+        </button>
+
+        <button
+
+            id="profile-btn"
+
+            class="profile-btn"
+
+            style="display:none;">
+
+            M
+
+        </button>
+
+    </div>
+
+</header>
+
+<!-- ===========================
+        PAGE
+============================ -->
+
+<div class="page-content">
+
+    <!-- Sidebar -->
+
+    <aside class="sidebar">
+
+        <div class="homeandshorts-part">
+
+            <div
+
+                class="sidebar-item active home-sidebar">
+
+                <span>🏠</span>
+
+                <span>خانه</span>
+
+            </div>
+
+            <div class="sidebar-item">
+
+                <span>🎬</span>
+
+                <span>Shorts</span>
+
+            </div>
+
+        </div>
+
+        <div class="sidebar-item">
+
+            <span>📺</span>
+
+            <span>Subscriptions</span>
+
+        </div>
+
+        <div class="sidebar-item">
+
+            <span>👤</span>
+
+            <span>You</span>
+
+        </div>
+
+        <div class="sidebar-item">
+
+            <span>🕘</span>
+
+            <span>History</span>
+
+        </div>
+
+        <div
+
+            class="sidebar-item playlist-sidebar">
+
+            <span>📂</span>
+
+            <span>Playlist</span>
+
+        </div>
+
+    </aside>
+
+    <!-- Main -->
+
+    <main class="videos-area">
+                <!-- Categories -->
+
+        <section class="categories">
+
+            <button
+                class="category-btn active-category">
+
+                همه
+
+            </button>
+
+            <button class="category-btn">
+
+                Music
+
+            </button>
+
+            <button class="category-btn">
+
+                Gaming
+
+            </button>
+
+            <button class="category-btn">
+
+                HTML
+
+            </button>
+
+            <button class="category-btn">
+
+                CSS
+
+            </button>
+
+            <button class="category-btn">
+
+                JavaScript
+
+            </button>
+
+            <button class="category-btn">
+
+                Programming
+
+            </button>
+
+            <button class="category-btn">
+
+                News
+
+            </button>
+
+            <button class="category-btn">
+
+                Live
+
+            </button>
+
+            <button class="category-btn">
+
+                Movies
+
+            </button>
+
+        </section>
+
+        <!-- Videos -->
+
+        <section
+
+            id="videos-grid"
+
+            class="videos-grid">
+
+        </section>
+
+    </main>
+
+</div>
+
+<!-- ===========================
+        FOOTER
+============================ -->
+
+<footer class="bottombar">
+
+    <div class="right-section-bottom">
+
+        <button
+
+            id="create-btn"
+
+            class="icon-btnCRTe"
+
+            style="display:none;">
+
+            ⊕ Create
+
+        </button>
+
+    </div>
+
+</footer>
+
+<!-- ===========================
+        JAVASCRIPT
+============================ -->
+
+<script src="script.js"></script>
+
+</body>
+
+</html>
